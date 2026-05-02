@@ -43,6 +43,8 @@ class SharedResources {
      public static final ReentrantLock counterLock = new ReentrantLock();
      // Lock for protecting execution log
       public static final ReentrantLock logLock = new ReentrantLock();
+      // Semaphore to control CPU access
+      public static final Semaphore cpuSemaphore = new Semaphore(1);
     
     // TODO #2: Add a Semaphore to limit concurrent process execution
     // Example: public static final Semaphore cpuSemaphore = new Semaphore(1);
@@ -119,6 +121,7 @@ class Process implements Runnable {
     public void run() {
         // TODO #3: Acquire CPU semaphore before executing
         // This ensures only allowed number of processes run simultaneously
+        SharedResources.cpuSemaphore.acquire();
         
         try {
             if (startTime == -1) {
@@ -182,6 +185,8 @@ class Process implements Runnable {
         } finally {
             // TODO #4: Release CPU semaphore here
             // Always release in finally block to prevent deadlocks!
+             SharedResources.cpuSemaphore.release();
+
         }
     }
     
