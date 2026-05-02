@@ -100,7 +100,9 @@ Document your development process with **minimum 3 entries** showing progression
 - Why is concurrent access a problem?
 - What incorrect behavior could occur?
 
-**Your Answer**:
+**Your Answer**:When many threads simultaneously increase the value of shared counters like contextSwitchCount, the first race situation takes place. Because the increment procedure is not atomic, this results in inaccurate counts.
+When several threads try to add items simultaneously in the executionLog, the second race condition takes place. This may result in incorrect data or runtime problems because ArrayList is not thread-safe.
+Because threads may overwrite each other's updates, concurrent access is challenging. Inaccurate statistics, such as an incorrect total waiting time or missing log entries, may result from this.
 
 [Your answer here - 4-6 sentences with code examples]
 
@@ -109,7 +111,8 @@ Document your development process with **minimum 3 entries** showing progression
 ### Question 2: Locks vs Semaphores
 **Q**: Explain the difference between ReentrantLock and Semaphore. Where did you use each in your code and why?
 
-**Your Answer**:
+**Your Answer**:Only one thread can access a crucial portion at a time thanks to reentrant lock, which ensures mutual exclusion. Conversely, a semaphore restricts access by permitting a certain number of threads.
+ReentrantLock was utilized in my implementation to safeguard the execution log and shared counters. I simulated a single CPU by controlling CPU access with a semaphore, which only permits one task to run at a time.
 
 [Your answer here - explain your implementation choices]
 
@@ -118,7 +121,9 @@ Document your development process with **minimum 3 entries** showing progression
 ### Question 3: Deadlock Prevention
 **Q**: What is deadlock? Explain TWO prevention techniques and what you did to prevent deadlocks in your code.
 
-**Your Answer**:
+**Your Answer**:When threads wait endlessly for resources owned by one another, this is known as a deadlock.
+Using try-finally blocks to guarantee that locks are always released is one preventative strategy. Keeping a constant locking sequence is another strategy.
+To avoid deadlocks, I utilized try-finally blocks for all locks and semaphore actions in my code.
 
 [Your answer here - reference try-finally blocks, lock ordering, etc.]
 
@@ -131,7 +136,7 @@ Document your development process with **minimum 3 entries** showing progression
 - What are the trade-offs between the two approaches?
 - Given that the three counters are independent, which approach provides better concurrency and why?
 
-**Your Answer**:
+**Your Answer**:Because counters and logs are independent, fine-grained locking offers better concurrency and efficiency than coarse-grained locking, which would use a single lock for all resources. I used fine-grained locking by separating locks into counterLock and logLock, which improves performance because threads can update counters and logs independently.
 
 [Your answer here - explain coarse-grained vs fine-grained locking, independence of counters, concurrency implications. Show understanding of when to use each approach. 5-8 sentences expected.]
 
