@@ -41,6 +41,8 @@ class SharedResources {
 
     // Lock for protecting shared counters
      public static final ReentrantLock counterLock = new ReentrantLock();
+     // Lock for protecting execution log
+      public static final ReentrantLock logLock = new ReentrantLock();
     
     // TODO #2: Add a Semaphore to limit concurrent process execution
     // Example: public static final Semaphore cpuSemaphore = new Semaphore(1);
@@ -83,7 +85,12 @@ try {
     public static void logExecution(String message) {
         // TODO: Protect this critical section with a lock
         // RACE CONDITION: ArrayList is not thread-safe!
-        executionLog.add(message);
+        logLock.lock();
+    try {
+    executionLog.add(message);  }
+     finally {
+    logLock.unlock();
+}
     }
 }
 
