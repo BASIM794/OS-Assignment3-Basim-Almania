@@ -32,67 +32,63 @@
 Document your development process with **minimum 3 entries** showing progression:
 
 ### Entry 1 - [MAY 2, 2026 (6:00 PM)]
-**What I implemented**: I began by comprehending the supplied code and locating shared resources like execution logs and counters.
+**What I implemented**: After examining the original code, I discovered shared resources that are accessible by several threads, like counters and execution logs.
 
-**Challenges encountered**: At first, it was challenging to recognize every potential racial circumstance.
+**Challenges encountered**: It was difficult to understand where racial circumstances exist in the software.
+**How I solved it**: I looked over every common variable and examined how it is used by several threads.
 
-**How I solved it**: I kept a close eye on shared variables and tracked thread execution.
-
-**Testing approach**: To see inconsistent results, run the application several times.
-
+**Testing approach**: I saw inconsistent results when I ran the application several times.
 **Time spent**: 45 min
 
 ---
 
 ### Entry 2 - [MAY 2, 2026 (6:45 PM)]
-**What I implemented**: To safeguard shared counters, I used ReentrantLock to implement synchronization.
+**What I implemented**: To safeguard shared counters (contextSwitchCount, completedProcessCount, totalWaitingTime), I introduced ReentrantLock.
 
-**Challenges encountered**: ensuring the correct release of locks.
+**Challenges encountered**: ensuring that locks are released correctly.
 
-**How I solved it**: Try-finally blocks were used to ensure unlocking.
+**How I solved it**: To ensure unlocking, I employed try-finally blocks.
 
-**Testing approach**: Multiple threads were tested, and consistent findings were confirmed.
+**Testing approach**: To guarantee consistency, the software was tested using many threads.
 
 **Time spent**: 30 min
 
 ---
 
 ### Entry 3 - [MAY 2, 2026 (7:15 PM)]
-**What I implemented**: Semaphore was included to regulate CPU resource access.
+**What I implemented**: To avoid concurrent modification problems, I implemented a separate lock for the execution log.
 
-**Challenges encountered**: comprehending thread blocking and permits.
+**Challenges encountered**: comprehending ArrayList's thread safety.
 
-**How I solved it**: studied the behavior of semaphores and correctly applied acquire/release.
-
-**Testing approach**: simulated several processes vying for the CPU.
+**How I solved it**: For logging operations, a special lock called logLock was used.
+**Testing approach**: looked for exceptions such as ConcurrentModificationException.
 
 **Time spent**: 45 min
 
 ---
 
 ### Entry 4 -[MAY 2, 2026 (8:00 PM)]
-**What I implemented**: prevented concurrent changes to the execution log.
+**What I implemented**: To manage CPU access, I put in place a semaphore (1 permit).
+**Challenges encountered**: accurately positioning acquire and release.
 
-**Challenges encountered**: ConcurrentModificationException avoidance.
+**How I solved it**: used acquire prior to execution and release in the final block.
 
-**How I solved it**: When accessing the log, synchronization was used.
+**Testing approach**: noted that only one process is active at a time.
 
-**Testing approach**: multiple-thread stress testing.
-
-**Time spent**: 1 hours
+**Time spent**: 1 hour
 
 ---
 
 ### Entry 5 - [MAY 2, 2026 (9:00 PM)]
-**What I implemented**: Debugging and final testing
+**What I implemented**: Debugging and final testing.
 
-**Challenges encountered**: 
+**Challenges encountered**: ensuring that there are no longer any race situations or deadlocks.
 
-**How I solved it**: 
+**How I solved it**: confirmed that every important area is secure.
 
-**Testing approach**: 
+**Testing approach**: ran the program several times and verified the consistency of the results.
 
-**Time spent**: 
+**Time spent**: 1 hour
 
 ---
 
