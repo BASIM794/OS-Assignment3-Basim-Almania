@@ -146,52 +146,67 @@ To avoid deadlocks, I utilized try-finally blocks for all locks and semaphore ac
 
 ### Critical Section #1: Counter Variables
 
-**Which variables**: 
+**Which variables**: contextSwitchCount, completedProcessCount, totalWaitingTime
 
-**Why they need protection**: 
+**Why they need protection**: They are updated simultaneously and shared by several threads.
 
-**Synchronization mechanism used**: 
+**Synchronization mechanism used**: ReentrantLock (counterLock)
 
-**Code snippet**:
+**Code snippet**:counterLock.lock();
+try {
+    contextSwitchCount++;
+} finally {
+    counterLock.unlock();
+}
 ```java
 // Paste your implementation here
 ```
 
-**Justification**: 
+**Justification**: avoids race situations and guarantees atomic updates.
 
 ---
 
 ### Critical Section #2: Execution Log
 
-**What resource**: 
+**What resource**: executionLog (ArrayList)
 
-**Why it needs protection**: 
+**Why it needs protection**: ArrayList is not thread-safe.
 
-**Synchronization mechanism used**: 
+**Synchronization mechanism used**: ReentrantLock (logLock)
 
-**Code snippet**:
+**Code snippet**:logLock.lock();
+try {
+    executionLog.add(message);
+} finally {
+    logLock.unlock();
+}
 ```java
 // Paste your implementation here
 ```
 
-**Justification**: 
+**Justification**: protects data integrity and stops concurrent alteration.
 
 ---
 
 ### Critical Section #3: CPU Semaphore
 
-**Purpose of semaphore**: 
+**Purpose of semaphore**: Limit CPU access
 
-**Number of permits and why**: 
+**Number of permits and why**: 1 permit to simulate a single CPU
 
-**Where implemented**: 
+**Where implemented**: In run() method before execution
 
-**Code snippet**:
+**Code snippet**:cpuSemaphore.acquire();
+try {
+    // process execution
+} finally {
+    cpuSemaphore.release();
+}
 ```java
 // Paste your implementation here
 ```
 
-**Effect on program behavior**: 
+**Effect on program behavior**: guarantees that a single process runs at a time.
 
 ---
 
