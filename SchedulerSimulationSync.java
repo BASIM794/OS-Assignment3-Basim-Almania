@@ -126,13 +126,19 @@ class Process implements Runnable {
         SharedResources.cpuSemaphore.acquire();
         
         try {
-            if (startTime == -1) {
-                startTime = System.currentTimeMillis();
-            }
-            finally {
-         SharedResources.cpuSemaphore.release();
-             }
-            }
+    SharedResources.cpuSemaphore.acquire();
+
+    if (startTime == -1) {
+        startTime = System.currentTimeMillis();
+    }
+
+   
+
+     } catch (InterruptedException e) {
+    e.printStackTrace();
+    } finally {
+    SharedResources.cpuSemaphore.release();
+     }
             // Increment context switch counter
             SharedResources.incrementContextSwitch();
             

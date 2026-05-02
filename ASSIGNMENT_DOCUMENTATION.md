@@ -1,8 +1,8 @@
 # Assignment 3 - Complete Documentation
 
-**Student Name**: [Your Full Name]  
-**Student ID**: [Your ID]  
-**Date Submitted**: [Submission Date]
+**Student Name**: [Basim Saleh Almania]  
+**Student ID**: [445050295]  
+**Date Submitted**: [2026 May 2]
 
 ---
 
@@ -31,60 +31,60 @@
 
 Document your development process with **minimum 3 entries** showing progression:
 
-### Entry 1 - [Date, Time]
-**What I implemented**: 
+### Entry 1 - [MAY 2, 2026 (6:00 PM)]
+**What I implemented**: I began by comprehending the supplied code and locating shared resources like execution logs and counters.
 
-**Challenges encountered**: 
+**Challenges encountered**: At first, it was challenging to recognize every potential racial circumstance.
 
-**How I solved it**: 
+**How I solved it**: I kept a close eye on shared variables and tracked thread execution.
 
-**Testing approach**: 
+**Testing approach**: To see inconsistent results, run the application several times.
 
-**Time spent**: 
-
----
-
-### Entry 2 - [Date, Time]
-**What I implemented**: 
-
-**Challenges encountered**: 
-
-**How I solved it**: 
-
-**Testing approach**: 
-
-**Time spent**: 
+**Time spent**: 45 min
 
 ---
 
-### Entry 3 - [Date, Time]
-**What I implemented**: 
+### Entry 2 - [MAY 2, 2026 (6:45 PM)]
+**What I implemented**: To safeguard shared counters, I used ReentrantLock to implement synchronization.
 
-**Challenges encountered**: 
+**Challenges encountered**: ensuring the correct release of locks.
 
-**How I solved it**: 
+**How I solved it**: Try-finally blocks were used to ensure unlocking.
 
-**Testing approach**: 
+**Testing approach**: Multiple threads were tested, and consistent findings were confirmed.
 
-**Time spent**: 
-
----
-
-### Entry 4 - [Date, Time]
-**What I implemented**: 
-
-**Challenges encountered**: 
-
-**How I solved it**: 
-
-**Testing approach**: 
-
-**Time spent**: 
+**Time spent**: 30 min
 
 ---
 
-### Entry 5 - [Date, Time]
-**What I implemented**: 
+### Entry 3 - [MAY 2, 2026 (7:15 PM)]
+**What I implemented**: Semaphore was included to regulate CPU resource access.
+
+**Challenges encountered**: comprehending thread blocking and permits.
+
+**How I solved it**: studied the behavior of semaphores and correctly applied acquire/release.
+
+**Testing approach**: simulated several processes vying for the CPU.
+
+**Time spent**: 45 min
+
+---
+
+### Entry 4 -[MAY 2, 2026 (8:00 PM)]
+**What I implemented**: prevented concurrent changes to the execution log.
+
+**Challenges encountered**: ConcurrentModificationException avoidance.
+
+**How I solved it**: When accessing the log, synchronization was used.
+
+**Testing approach**: multiple-thread stress testing.
+
+**Time spent**: 1 hours
+
+---
+
+### Entry 5 - [MAY 2, 2026 (9:00 PM)]
+**What I implemented**: Debugging and final testing
 
 **Challenges encountered**: 
 
