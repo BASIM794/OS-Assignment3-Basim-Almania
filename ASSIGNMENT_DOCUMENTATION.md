@@ -215,57 +215,63 @@ try {
 ### Test 1: Consistency Check
 **What I tested**: Running program multiple times to verify consistent results
 
-**Testing procedure**: 
+**Testing procedure**: Run the program 5 times
 ```bash
 # Commands used (run the program at least 5 times)
 ```
 
-**Results**: 
+**Results**: Every implementation yielded consistent outcomes.
 (Show that running multiple times produces consistent, correct results)
 
-**Why synchronization is necessary**: 
+**Why synchronization is necessary**: Race circumstances would result in erroneous counter values and inconsistent logs in the absence of synchronization.
 (Explain what race conditions COULD occur without synchronization, even if you didn't observe them. Explain which shared resources need protection and why.)
 
-**Conclusion**: 
+**Conclusion**: Accuracy and stability are guaranteed by synchronization.
 
 ---
 
 ### Test 2: Exception Testing
 **What I tested**: Checking for ConcurrentModificationException
 
-**Testing procedure**: 
+**Testing procedure**: Run the program multiple times while observing the execution log behavior.
 
-**Results**: 
+**Results**: During execution, there were no exceptions.
 
-**What this proves**: 
+**What this proves**: Concurrent modification problems are avoided by employing a lock to properly synchronize the execution log.
 
 ---
 
 ### Test 3: Correctness Verification
 **What I tested**: Verifying correct final values (total burst time, context switches, etc.)
 
-**Expected values**: 
+**Expected values**: Total completed processes = 18
 
-**Actual values**: 
+**Actual values**: Matched expected output
 
-**Analysis**: 
+**Analysis**: After synchronization, the program operates as intended.
 
 ---
 
 ### Test 4: Different Scenarios
-**Scenario tested**: [e.g., different time quantum, more processes, etc.]
+**Scenario tested**:Running the program with randomly generated processes and different burst times.
+ [e.g., different time quantum, more processes, etc.]
 
-**Purpose**: 
+**Purpose**: This test aims to confirm that the synchronization mechanisms (locks and semaphore) function properly under various workloads and situations. Regardless of the number of processes or execution patterns, it guarantees that the program stays stable, prevents race situations, and generates accurate results.
 
-**Results**: 
+**Results**: In every situation, the application ran accurately and consistently.
 
-**What I learned**: 
+**What I learned**: Even with varying workloads, the synchronization technique remains accurate and dependable.
 
 ---
 
 ## Part 5: Reflection and Learning
 
 ### What I learned about synchronization:
+I discovered that when several threads share resources, synchronization is crucial.
+If not managed appropriately, racial problems might have unanticipated outcomes.
+While semaphores regulate access levels, locks guarantee mutual exclusion.
+I also learned how to use try-finally blocks and appropriate architecture to avoid deadlocks.
+To ensure thread safety, it is crucial to test several times.
 
 [6-8 sentences about key concepts, challenges, insights]
 
@@ -275,14 +281,17 @@ try {
 
 Give TWO examples where synchronization is critical:
 
-**Example 1**: 
+**Example 1**: banking systems that allow several people to access the same account.
 
-**Example 2**: 
+
+**Example 2**: CPU scheduling is managed by operating systems.
 
 ---
 
 ### How I would explain synchronization to others:
-
+Controlling access to a shared resource is analogous to synchronization.
+Problems arise when numerous people attempt to use the same product simultaneously.
+Semaphores permit restricted access, whereas locks function as a key that can only be held by one person.
 [Explain to someone who just finished Assignment 1 - use simple terms and analogies]
 
 ---
